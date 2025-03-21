@@ -237,7 +237,7 @@ dim(roll_calls)
 ```
 
 
-> Insert Answer Here
+> They do not match because it indicates that the UN votes more than once on an issue.
 
 
 
@@ -245,27 +245,27 @@ Now let's try joining the `roll_calls` with the `issues` data.  Compare the foll
 
 ```{r}
 roll_calls |> 
-  left_join(issues, by = "rcid") #description of join
+  left_join(issues, by = "rcid") #keeping all the data from roll calls and matching it by rcid.
 ```
 
 ```{r}
 roll_calls |> 
-  right_join(issues, by = "rcid") #description of join
+  right_join(issues, by = "rcid") #keeping all the rows from issues and adding data based on rcid
 ```
 
 ```{r}
 roll_calls |> 
-  full_join(issues, by = "rcid") #description of join
+  full_join(issues, by = "rcid") #keeping all the rows
 ```
 
 ```{r}
 roll_calls |> 
-  inner_join(issues, by = "rcid") #description of join
+  inner_join(issues, by = "rcid") #keeping all the rows that the data matches
 ```
 
 **If we are only interested in retaining the records associated with the `issues` labeled in our data, which join(s) should we use?**
 
-> Insert answer here
+> We should use the right joins because it is guarantteed to keeps all the data sets that we need.
 
 
 
