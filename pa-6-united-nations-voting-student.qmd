@@ -168,14 +168,14 @@ unvotes |>
 
 ### Roll Calls
 
-The second data set, `roll_calls` has more information on the type of vote, the importance, whether it was a resolution, and date of the vote.  What does eh following code do?
+The second data set, `roll_calls` has more information on the type of vote, the importance, whether it was a resolution, and date of the vote.  What does the following code do?
 
 ```{r}
 roll_calls |> 
   distinct(short)
 ```
 
-> Description of code results
+> Returns a list of all unique topics of UN votes in the dataset.
 
 
 
@@ -196,7 +196,7 @@ roll_calls |>
 
 What information is missing from the above graphic that might be useful in understanding the issues the UN commonly votes on?
 
-> Insert Answer Here
+> Information regarding whether the vote was on an amendment or paragraph would provide some more useful information.
 
 
 
@@ -208,7 +208,7 @@ roll_calls |>
 
 Does the above information help us understand the voting issues of the UN over time? Explain.
 
-> Insert your answer here
+> No. There is no date information in the returned data.
 
 
 
