@@ -315,8 +315,8 @@ We want to join all three data sets together, *maintaining only the votes for wh
 
 ```{r}
 un_full <- unvotes |> 
-  _________(issues, by = "rcid") |> 
-  _________(roll_calls, by = "rcid") 
+  inner_join(issues, by = "rcid") |> 
+  inner_join(roll_calls, by = "rcid") 
 
 #View(un_full)
 ```
@@ -325,11 +325,11 @@ un_full <- unvotes |>
 Now, we are going to do some data cleaning.  Our goal is create a data set that includes the percentage of "yes" votes per country each year. Fill in the missing _________ with the correct verbs. We will call the data table `yes_votes`
 ```{r}
 yes_votes <- un_full |> 
-  _________(country, issue, date, vote) |>  #keep just the columns for country, issue, date, vote
-  _________(year = lubridate::year(date)) |> #create a new variable called year
-  _________(country, year, issue) |> #group country, year, issue together to prepare for subsequent analysis
-  _________(percent_yes = mean(vote == "yes")) |> #calculate the proportion of yes votes
-  _________(issue = case_when(
+  select(country, issue, date, vote) |>  #keep just the columns for country, issue, date, vote
+  mutate(year = lubridate::year(date)) |> #create a new variable called year
+  group_by(country, year, issue) |> #group country, year, issue together to prepare for subsequent analysis
+  mutate(percent_yes = mean(vote == "yes")) |> #calculate the proportion of yes votes
+  mutate(issue = case_when(
     issue == "Arms control and disarmament" ~ "Arms Control",
     issue == "Nuclear weapons and nuclear material" ~ "Nuclear Weapons",
     issue == "Palestinian conflict" ~ "Palestinian Conflict",
@@ -343,7 +343,7 @@ Now write the clean data `yes_votes` to a new data set in the data folder so we 
 
 
 ```{r}
-_____csv(yes_votes, "data/yes_votes.csv")
+write_csv(yes_votes, "data/yes_votes.csv")
 ```
 
 
@@ -375,7 +375,7 @@ yes_votes |>
 
 What do you notice about the voting records over time? 
 
->Insert Answer Here
+> The US is voting 'yes' less and less in recent years.
 
 
 
