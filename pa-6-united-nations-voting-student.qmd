@@ -135,27 +135,27 @@ Comment on the following code, what is happening in each line?  One way to appro
 
 ```{r}
 unvotes |> 
-  count(country, vote) |> #comment
-  group_by(country) |> #comment
-  mutate(total = sum(n)) |> #comment 
-  mutate(prop_vote = n/total) |> #comment
+  count(country, vote) |> # counting the amount of total votes based on country and vote type.
+  group_by(country) |> #grouping the data by the country
+  mutate(total = sum(n)) |> #find the total numbe of votes for each country 
+  mutate(prop_vote = n/total) |> #adding a column based on the proprtion of the votes
   filter(country %in% c("United States", "Canada", 
                         "Germany", "France",
                         "Italy", "Japan",
-                        "United Kingdom")) |> #comment
+                        "United Kingdom")) |> #Filters the countries that we want for the graph
   ggplot(aes(x = country, y = prop_vote, 
-             fill = vote)) + #comment
-  geom_col(position = position_stack()) + #comment
+             fill = vote)) + #starting the plot
+  geom_col(position = position_stack()) + #column geometry for the plot
   labs(x = "Group of Seven Countries",
        y = "Proportion of Votes",
        title = "Voting Record of the G7",
-       fill = "Vote") + #comment
-  theme_minimal() +  #comment
-  scale_fill_viridis_d(end = 0.8) + #comment
-  coord_flip() #comment
+       fill = "Vote") + #labeling the data
+  theme_minimal() +  #using minimal theme
+  scale_fill_viridis_d(end = 0.8) + #give the end of rainbow color scheme
+  coord_flip() #swaps to horizontal orientation and flips the x and y coordinates
 ```
 
-> Describe what the graph above demonstrates above UN voting records for the G7 
+> Describe what the graph above demonstrates above UN voting records for the G7 : Basically shows the proportion of the votes in the first world countries. Unites States is the country that has the lowest proportion for yes votes while also having the highest proportion of the no votes.
   
   
   
